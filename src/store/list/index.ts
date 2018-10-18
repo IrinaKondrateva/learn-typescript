@@ -1,3 +1,3 @@
 export { listReducer } from "./reducer";
 export * from "./actions";
-// export { getValueList } from "./selectors";
+export { getValueList } from "./selectors";

@@ -1,6 +1,4 @@
 import { IStore } from "../types";
-import { IList } from "./types";
+import { IListItem } from "./types";
 
-export const getValueList = (state: IStore): IList => ({
-  valueList: state.todoList.valueList
-});
+export const getValueList = (state: IStore): IListItem[] => state.todoList.valueList;

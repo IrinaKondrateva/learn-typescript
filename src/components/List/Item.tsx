@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface IProps {
   id: string;
@@ -7,10 +7,14 @@ interface IProps {
 }
 
 export function Item({ value, handleClickDel, id }: IProps): JSX.Element {
+  function removeElement() {
+    handleClickDel(id);
+  }
+
   return (
     <li>
       <span>{value}</span>
-      <button onClick={handleClickDel.bind(null, id)}>Удалить</button>
+      <button onClick={removeElement}>Удалить</button>
     </li>
   );
 }
