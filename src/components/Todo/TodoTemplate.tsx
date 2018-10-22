@@ -1,6 +1,6 @@
-import * as React from "react";
-import { IListItem } from "../../store/list/types";
-import { renderList as List } from "../List/List";
+import * as React from 'react';
+import { IListItem } from '../../store/list/types';
+import { renderList as List } from '../List/List';
 
 interface IProps {
   handleBtnClick: (event: React.MouseEvent<HTMLElement>) => void;
@@ -26,3 +26,18 @@ export function TodoTemplate({
     </div>
   );
 }
+
+// sort interfaces
+
+function sortInterface<IntAll extends { id: number }>(arg: IntAll[]): IntAll[] {
+  return arg.sort((a, b): number => a.id - b.id);
+}
+
+// tslint:disable-next-line:no-console
+console.log(
+  sortInterface([
+    { id: 7, name: 'cat' },
+    { id: 4, text: 'dog', age: 12 },
+    { id: 12, text: 'sdasd' }
+  ])
+);

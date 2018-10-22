@@ -1,9 +1,9 @@
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { addItem, deleteItem, getValueList } from "../../store/list";
-import { IListItem } from "../../store/list/types";
-import { IStore } from "../../store/types";
-import { TodoBehaviour } from "./TodoBehaviour";
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { addItem, deleteItem, getValueList } from '../../store/list';
+import { IListItem } from '../../store/list/types';
+import { IStore } from '../../store/types';
+import { TodoBehaviour } from './TodoBehaviour';
 
 interface IStateFromProps {
   valueList: IListItem[];

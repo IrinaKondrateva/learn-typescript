@@ -1,14 +1,27 @@
-import { combineReducers, createStore, Store } from "redux";
-import { listReducer } from "./list";
-import { IStore } from "./types";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore,
+  Store
+} from 'redux';
+// import { movieFetchMiddleware } from '../middlewares/loadMovieMiddleware';
+import thunk from 'redux-thunk';
+import { listReducer } from './list';
+import { movieReducer } from './movie';
+import { IStore } from './types';
 
 const rootReducer = combineReducers({
+  movieInfo: movieReducer,
   todoList: listReducer
 });
 
 export const store: Store<IStore> = createStore(
   rootReducer,
-  // tslint:disable-next-line:no-string-literal
-  window[`__REDUX_DEVTOOLS_EXTENSION__`] &&
-    window[`__REDUX_DEVTOOLS_EXTENSION__`]()
+  compose(
+    applyMiddleware(thunk),
+    // tslint:disable-next-line:no-string-literal
+    window[`__REDUX_DEVTOOLS_EXTENSION__`] &&
+      window[`__REDUX_DEVTOOLS_EXTENSION__`]()
+  )
 );

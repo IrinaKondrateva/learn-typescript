@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Link, Route } from 'react-router-dom';
-import bigBang from '../../assets/bigBang.jpeg';
-import breakingBad from '../../assets/breakingBad.jpeg';
-import scrubs from '../../assets/scrubs.jpeg';
-import { AboutMovieTemplate } from '../AboutMovie/AboutMovieTemplate';
+import * as uuid from 'uuid';
+import bigBangImg from '../../assets/bigBang.jpeg';
+import breakingBadImg from '../../assets/breakingBad.jpeg';
+import scrubsImg from '../../assets/scrubs.jpeg';
+import { AboutMovieConnect } from '../AboutMovie/AboutMovieConnect';
 
 interface IProps {
   match: {
@@ -13,19 +14,21 @@ interface IProps {
 }
 
 export function MovieTemplate({ match }: IProps): JSX.Element {
+  const movieArr = [
+    { movieName: 'scrubs', movieImg: scrubsImg },
+    { movieName: 'bigBang', movieImg: bigBangImg },
+    { movieName: 'breakingBad', movieImg: breakingBadImg }
+  ];
+
   return (
     <section className="MoviePage">
       <h3>Фильмы</h3>
-      <Link to={`${match.url}/scrubs`}>
-        <img src={scrubs} alt="scrubs" />
-      </Link>
-      <Link to={`${match.url}/bigBang`}>
-        <img src={bigBang} alt="bigBang" />
-      </Link>
-      <Link to={`${match.url}/breakingBad`}>
-        <img src={breakingBad} alt="breakingBad" />
-      </Link>
-      <Route path={`${match.path}/:id`} component={AboutMovieTemplate} />
+      {movieArr.map(({ movieName, movieImg }) => (
+        <Link key={uuid.v1()} to={`${match.url}/${movieName}`}>
+          <img src={movieImg} alt={movieName} />
+        </Link>
+      ))}
+      <Route path={`${match.path}/:id`} component={AboutMovieConnect} />
     </section>
   );
 }
