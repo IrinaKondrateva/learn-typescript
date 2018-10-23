@@ -7,17 +7,17 @@ const movieUrls = {
   scrubs: ' http://api.tvmaze.com/shows/532'
 };
 
-// second way with actionCreator.async
+// first way with actionCreator.async
 
 const actionCreator = actionCreatorFactory();
 export const movieFetchAsync = actionCreator.async<string, string, string>(
   'MOVIE_FETCH'
 );
 
-export const loadMovie = (movieName: string) => async (dispatch: Dispatch) => {
+export const loadMovie = async (dispatch: Dispatch, movieName: string) => {
   const movieUrl = movieUrls[movieName];
 
-  dispatch(movieFetchAsync.started(movieName));
+  // dispatch(movieFetchAsync.started(movieName)); // при использовании thunk
 
   try {
     const movieSummary: string = await fetch(movieUrl)
@@ -32,7 +32,7 @@ export const loadMovie = (movieName: string) => async (dispatch: Dispatch) => {
   }
 };
 
-// first way with actionCreator.async
+// second way with actionCreator.async
 
 // const actionCreator = actionCreatorFactory();
 // export const requestDataStartAction = actionCreator<string>(

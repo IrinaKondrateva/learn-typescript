@@ -9,11 +9,23 @@ interface IProps {
       id: string;
     };
   };
-  movieFetch: (movieName: string) => Promise<void>;
+  // movieFetch: (movieName: string) => Promise<void>;
+  movieFetch: (movieName: string) => void;
   movieInfo: IMovie;
 }
 
 export class AboutMovieBehaviour extends React.PureComponent<IProps, {}> {
+  public componentDidMount() {
+    const {
+      match: {
+        params: { id }
+      },
+      movieFetch
+    } = this.props;
+
+    movieFetch(id);
+  }
+
   public componentDidUpdate(prevProps: IProps) {
     const {
       match: {
@@ -23,8 +35,6 @@ export class AboutMovieBehaviour extends React.PureComponent<IProps, {}> {
     } = this.props;
 
     if (prevProps.match.params.id !== id) {
-      // tslint:disable-next-line:no-console
-      console.log('componentDidUpdate');
       movieFetch(id);
     }
   }
