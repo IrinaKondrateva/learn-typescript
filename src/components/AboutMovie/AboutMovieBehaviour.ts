@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import { RouteComponentProps } from 'react-router-dom';
 import { IMovie } from '../../store/movie/types';
 import { AboutMovieTemplate } from './AboutMovieTemplate';
 
@@ -9,7 +8,6 @@ interface IProps {
       id: string;
     };
   };
-  // movieFetch: (movieName: string) => Promise<void>;
   movieFetch: (movieName: string) => void;
   movieInfo: IMovie;
 }

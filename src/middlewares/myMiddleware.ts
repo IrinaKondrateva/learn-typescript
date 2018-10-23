@@ -5,9 +5,10 @@ import { IStore } from '../store/types';
 export const myMiddleware = ({ dispatch }: MiddlewareAPI<Dispatch, IStore>) => (
   next: Dispatch
 ) => (action: AnyAction) => {
-  if (action.type === movieFetchAsync.started.type) {
-    loadMovie(dispatch, action.payload);
+  switch (action.type) {
+    case movieFetchAsync.started.type:
+      return loadMovie(dispatch, action.payload), next(action);
+    default:
+      return next(action);
   }
-
-  return next(action);
 };
